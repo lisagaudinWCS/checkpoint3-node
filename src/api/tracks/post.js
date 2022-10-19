@@ -9,7 +9,12 @@ module.exports = (req, res) => {
       [title, youtube_url, id_album]
     )
     .then(([result]) => {
-      res.location(`/api/tracks/${result.insertId}`).sendStatus(201);
+      res.location(`/api/tracks/${result.insertId}`).status(201).json({
+        id: result.insertId,
+        title: title,
+        youtube_url: youtube_url,
+        id_album: id_album,
+      });
     })
     .catch((err) => {
       console.error(err);

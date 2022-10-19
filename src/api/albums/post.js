@@ -9,7 +9,13 @@ module.exports = (req, res) => {
       [title, genre, picture, artist]
     )
     .then(([result]) => {
-      res.location(`/api/albums/${result.insertId}`).sendStatus(201);
+      res.location(`/api/albums/${result.insertId}`).status(201).json({
+        id: result.insertId,
+        title: title,
+        genre: genre,
+        picture: picture,
+        artist: artist,
+      });
     })
     .catch((err) => {
       console.error(err);

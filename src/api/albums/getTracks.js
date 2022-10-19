@@ -11,11 +11,7 @@ module.exports = (req, res) => {
       [id]
     )
     .then(([albums]) => {
-      if (albums[0] != null) {
-        res.json(albums[0]);
-      } else {
-        res.status(404).send('Not Found');
-      }
+      res.json(albums);
     })
     .catch((err) => {
       console.error(err);
